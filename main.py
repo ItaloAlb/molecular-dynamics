@@ -9,7 +9,7 @@ class MolecularDynamics(object):
     def __init__(self, RadiusCutoff:float = 1,
                  InteractionStrength:float = 1.65 * 10 ** (-21),
                  LengthScale:float = 3.4 * 10 ** (-10),
-                 TimeStep:float = 4.5 * 10 ** (-12),
+                 TimeStep:float = 4.5 * 10 ** (-4),
                  BoundaryLength:int = 5,
                  NumberOfParticles:int = 256):
 
