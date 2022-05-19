@@ -44,8 +44,6 @@ class MolecularDynamic:
         self.rx = np.linspace(- self.L_X + 1, self.L_X - 1, sqrt_n_atom)
         self.ry = np.linspace(- self.L_Y + 1, self.L_Y - 1, sqrt_n_atom)
 
-        print(self.rx)
-
         self.rx, self.ry = np.meshgrid(self.rx, self.ry)
 
         self.rx = self.rx.flatten()
