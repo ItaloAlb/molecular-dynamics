@@ -95,11 +95,19 @@ class MolecularDynamic:
                 self.ay[pair[1]] -= f * dry
 
     def apply_boundary_condition(self):
-        self.rx = np.where(self.rx > self.L_X, self.rx - 2 * self.L_X, self.rx)
-        self.ry = np.where(self.ry > self.L_Y, self.ry - 2 * self.L_Y, self.ry)
+        self.vx = np.where(self.rx > self.L_X, - self.vx, self.vx)
+        self.vy = np.where(self.ry > self.L_Y, - self.vy, self.vy)
 
-        self.rx = np.where(self.rx <= - self.L_X, self.rx + 2 * self.L_X, self.rx)
-        self.ry = np.where(self.ry <= - self.L_Y, self.ry + 2 * self.L_Y, self.ry)
+        self.vx = np.where(self.rx <= - self.L_X, - self.vx, self.vx)
+        self.vy = np.where(self.ry <= - self.L_Y, - self.vy, self.vy)
+
+        # Causes instability:
+
+        # self.rx = np.where(self.rx > self.L_X, self.rx - 2 * self.L_X, self.rx)
+        # self.ry = np.where(self.ry > self.L_Y, self.ry - 2 * self.L_Y, self.ry)
+        #
+        # self.rx = np.where(self.rx <= - self.L_X, self.rx + 2 * self.L_X, self.rx)
+        # self.ry = np.where(self.ry <= - self.L_Y, self.ry + 2 * self.L_Y, self.ry)
 
     def periodic_boundary_condition(self, dr, l):
         if dr > 0.5 * l:
@@ -108,3 +116,4 @@ class MolecularDynamic:
             return dr + l
         else:
             return dr
+
